@@ -1,5 +1,8 @@
 #include<iostream>
 #include<Windows.h>
+#include <stdio.h>
+#include <string.h>
+#pragma warning(disable : 4996)
 using namespace std;
 
 int StringLenghth(const char str[]);
@@ -13,8 +16,8 @@ bool isBinNumber(const char str[]);
 bool isHexNumber(const char str[]);
 unsigned long long bin2dec(const char str[]);
 unsigned long long hex2dec(const char str[]);
-bool isIPaddress(const char str[]);
-
+bool isIPaddress(char str[]);
+bool isMACaddress(char str[]);
 
 //#define BASIC_STRING_OPERATIONS
 
@@ -41,13 +44,15 @@ void main()
 
 	const int SIZE = 65;
 	char str[SIZE] = {};
-	//cout << "Введите двоичное число: ";
+	cout << "Введите ip - адрес: ";
 	cin.getline(str, SIZE);
 	//cout << "Строка " << (isBinNumber(str) ? "" : "НЕ ") << "является двоичным числом" << endl;
 	//cout << bin2dec(str) << endl;
 	//cout << "Строка " << (isHexNumber(str) ? "" : "НЕ ") << "является шестнадцатиричным числом" << endl;
 	//cout << hex2dec(str) << endl;
-	cout << "Строка " << (isIPaddress(str) ? "" : "НЕ ") << "является IP-адресом" << endl;
+	//00:AB:CD:EF:11:22
+	//cout << "Строка " << (isIPaddress(str) ? "" : "НЕ ") << "является IP-адресом" << endl;
+	cout << "Строка " << (isMACaddress(str) ? "" : "НЕ ") << "является IP-адресом" << endl;
 }
 
 int StringLenghth(const char str[])
@@ -186,27 +191,80 @@ unsigned long long hex2dec(const char str[])
 	return decimal;
 }
 
-bool isIPaddress(const char str[])
+//bool isIPaddress(const char str[])
+//{
+//	int n = strlen(str);
+//	if (n < 7 || n > 15) return false;
+//	char bytes[4][4] = {};
+//	for (int i = 0, j = 0, k = 0; str[i]; i++)
+//	{
+//		if (str[i] == '.')
+//		{
+//			j++;
+//			if (j > 3) return false;
+//			k = 0;
+//			continue;
+//		}
+//		bytes[j][k++] = str[i];
+//	}
+//	for (int i = 0; i < 4; i++)
+//	{
+//		if (toIntNumber(bytes[i]) > 255) return false;
+//		cout << bytes[i] << "\t";
+//	}
+//	cout << endl;
+//	return true;
+//}
+
+//bool isIPaddress(const char str[])
+//{
+//	int n = strlen(str);
+//	if (n < 7 || n > 15) return false;
+//	char byte[4] = {};
+//	for (int i = 0, j = 0, points = 0; str[i]; i++)
+//	{
+//		if (str[i] == '.')
+//		{
+//			j = 0;
+//			points++;
+//			if (points > 3) return false;
+//			if (toIntNumber(byte) > 255) return false;
+//			continue;
+//		}
+//		byte[j++] = str[i];
+//		if (j > 3) return false;
+//	}
+//	return true;
+//}
+//
+bool isIPaddress(char str[])
 {
 	int n = strlen(str);
 	if (n < 7 || n > 15) return false;
-	char bytes[4][4] = {};
-	for (int i = 0, j = 0, k = 0; str[i]; i++)
+	char* context = NULL;
+	char* token = strtok_s(str, ".", &context);;
+		for (int count = 1; token != NULL; count++)
 	{
-		if (str[i] == '.')
-		{
-			j++;
-			if (j > 3) return false;
-			k = 0;
-			continue;
-		}
-		bytes[j][k++] = str[i];
+		return (toIntNumber(token) > 255 ? false : strlen(token) > 3 ? false : true);
+		token = strtok_s(NULL, ".", &context);
 	}
-	for (int i = 0; i < 4; i++)
-	{
-		if (toIntNumber(bytes[i]) > 255) return false;
-		cout << bytes[i] << "\t";
-	}
-	cout << endl;
 	return true;
 }
+
+
+bool isMACaddress(char str[])
+{
+	int n = strlen(str);
+	if (n != 17) return false;
+	char* context = NULL;
+	char* token = strtok_s(str, ":", &context);
+	for (int count = 1; token != NULL; count++)
+	{
+		return (!isHexNumber(token) ? false : strlen(token) > 2 ? false : true);
+		token = strtok_s(NULL, ":", &context);
+	}
+	return true;
+}
+
+
+

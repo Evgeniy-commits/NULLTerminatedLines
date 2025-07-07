@@ -1,4 +1,4 @@
-#include<iostream>
+п»ї#include<iostream>
 #include<Windows.h>
 #include <stdio.h>
 #include <string.h>
@@ -27,8 +27,8 @@ void main()
 #ifdef BASIC_STRING_OPERATIONS
 	const int SIZE = 100;
 	//char str[SIZE] = {};
-	char str[] = "Аргентина манит негра";
-	cout << "Введите строку: ";
+	char str[] = "РђСЂРіРµРЅС‚РёРЅР° РјР°РЅРёС‚ РЅРµРіСЂР°";
+	cout << "Р’РІРµРґРёС‚Рµ СЃС‚СЂРѕРєСѓ: ";
 	SetConsoleCP(1251);
 	cin.getline(str, SIZE);
 	SetConsoleCP(866);
@@ -37,22 +37,22 @@ void main()
 	cout << ToUpper(str) << endl;
 	//cout << ToLower(str) << endl;
 	cout << Shrink(str) << endl;
-	cout << "Строка " << (isPalindrom(str) ? "" : "НЕ ") << "является палиндромом" << endl;
-	cout << "Строка " << (isIntNumber(str) ? "" : "НЕ ") << "является числом" << endl;
+	cout << "РЎС‚СЂРѕРєР° " << (isPalindrom(str) ? "" : "РќР• ") << "СЏРІР»СЏРµС‚СЃСЏ РїР°Р»РёРЅРґСЂРѕРјРѕРј" << endl;
+	cout << "РЎС‚СЂРѕРєР° " << (isIntNumber(str) ? "" : "РќР• ") << "СЏРІР»СЏРµС‚СЃСЏ С‡РёСЃР»РѕРј" << endl;
 	cout << str << " * 2 = " << toIntNumber(str) * 2 << endl;
 #endif // BASIC_STRING_OPERATIONS
 
 	const int SIZE = 65;
 	char str[SIZE] = {};
-	cout << "Введите ip - адрес: ";
+	cout << "Р’РІРµРґРёС‚Рµ ip - Р°РґСЂРµСЃ: ";
 	cin.getline(str, SIZE);
-	//cout << "Строка " << (isBinNumber(str) ? "" : "НЕ ") << "является двоичным числом" << endl;
+	//cout << "РЎС‚СЂРѕРєР° " << (isBinNumber(str) ? "" : "РќР• ") << "СЏРІР»СЏРµС‚СЃСЏ РґРІРѕРёС‡РЅС‹Рј С‡РёСЃР»РѕРј" << endl;
 	//cout << bin2dec(str) << endl;
-	//cout << "Строка " << (isHexNumber(str) ? "" : "НЕ ") << "является шестнадцатиричным числом" << endl;
+	//cout << "РЎС‚СЂРѕРєР° " << (isHexNumber(str) ? "" : "РќР• ") << "СЏРІР»СЏРµС‚СЃСЏ С€РµСЃС‚РЅР°РґС†Р°С‚РёСЂРёС‡РЅС‹Рј С‡РёСЃР»РѕРј" << endl;
 	//cout << hex2dec(str) << endl;
 	//00:AB:CD:EF:11:22
-	//cout << "Строка " << (isIPaddress(str) ? "" : "НЕ ") << "является IP-адресом" << endl;
-	cout << "Строка " << (isMACaddress(str) ? "" : "НЕ ") << "является IP-адресом" << endl;
+	//cout << "РЎС‚СЂРѕРєР° " << (isIPaddress(str) ? "" : "РќР• ") << "СЏРІР»СЏРµС‚СЃСЏ IP-Р°РґСЂРµСЃРѕРј" << endl;
+	cout << "РЎС‚СЂРѕРєР° " << (isMACaddress(str) ? "" : "РќР• ") << "СЏРІР»СЏРµС‚СЃСЏ MAC-Р°РґСЂРµСЃРѕРј" << endl;
 }
 
 int StringLenghth(const char str[])
@@ -67,7 +67,7 @@ char* ToUpper(char str[])
 	for (int i = 0; str[i]; i++)
 	{
 		/*if (str[i] >= 'a' && str[i] <= 'z') str[i] -= ' ';
-		if (str[i] >= 'а' && str[i] <= 'я') str[i] -= ' ';*/
+		if (str[i] >= 'Р°' && str[i] <= 'СЏ') str[i] -= ' ';*/
 		str[i] = toupper(str[i]);
 	}
 	return str;
@@ -78,7 +78,7 @@ char* ToLower(char str[])
 	for (int i = 0; str[i]; i++)
 	{
 		/*if (str[i] >= 'A' && str[i] <= 'Z') str[i] += ' ';
-		if (str[i] >= 'А' && str[i] <= 'Я') str[i] += ' ';*/
+		if (str[i] >= 'Рђ' && str[i] <= 'РЇ') str[i] += ' ';*/
 		str[i] = tolower(str[i]);
 	}
 	return str;
